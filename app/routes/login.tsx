@@ -22,21 +22,21 @@ export async function action({ request }: ActionArgs) {
 
   if (!validateEmail(email)) {
     return json(
-      { errors: { email: "Email is invalid", password: null } },
+      { errors: { email: "Correo no válido", password: null } },
       { status: 400 }
     );
   }
 
   if (typeof password !== "string" || password.length === 0) {
     return json(
-      { errors: { email: null, password: "Password is required" } },
+      { errors: { email: null, password: "Contraseña es obligatorio" } },
       { status: 400 }
     );
   }
 
   if (password.length < 8) {
     return json(
-      { errors: { email: null, password: "Password is too short" } },
+      { errors: { email: null, password: "Mínimo 8 caracteres" } },
       { status: 400 }
     );
   }
@@ -45,7 +45,7 @@ export async function action({ request }: ActionArgs) {
 
   if (!user) {
     return json(
-      { errors: { email: "Invalid email or password", password: null } },
+      { errors: { email: "Correo o contraseña no valido", password: null } },
       { status: 400 }
     );
   }
@@ -160,7 +160,7 @@ export default function LoginPage() {
               </label>
             </div>
             <div className="text-center text-sm text-gray-500">
-              No tienes cuenta?{" "}
+              ¿No tienes cuenta?{" "}
               <Link
                 className="text-blue-500 underline"
                 to={{

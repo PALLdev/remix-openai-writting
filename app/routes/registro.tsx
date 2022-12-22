@@ -22,21 +22,21 @@ export async function action({ request }: ActionArgs) {
 
   if (!validateEmail(email)) {
     return json(
-      { errors: { email: "Email is invalid", password: null } },
+      { errors: { email: "Correo no válido", password: null } },
       { status: 400 }
     );
   }
 
   if (typeof password !== "string" || password.length === 0) {
     return json(
-      { errors: { email: null, password: "Password is required" } },
+      { errors: { email: null, password: "Contraseña es obligatorio" } },
       { status: 400 }
     );
   }
 
   if (password.length < 8) {
     return json(
-      { errors: { email: null, password: "Password is too short" } },
+      { errors: { email: null, password: "Mínimo 8 caracteres" } },
       { status: 400 }
     );
   }
@@ -46,7 +46,7 @@ export async function action({ request }: ActionArgs) {
     return json(
       {
         errors: {
-          email: "A user already exists with this email",
+          email: "Ya existe un usuario con este correo",
           password: null,
         },
       },
@@ -152,7 +152,7 @@ export default function Join() {
           </button>
           <div className="flex items-center justify-center">
             <div className="text-center text-sm text-gray-500">
-              Ya tienes una cuenta?{" "}
+              ¿Ya tienes cuenta?{" "}
               <Link
                 className="text-blue-500 underline"
                 to={{
