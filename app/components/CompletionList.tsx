@@ -6,7 +6,7 @@ type CompletionListProps = {
 
 export default function CompletionList({ prompts }: CompletionListProps) {
   return (
-    <ul className="flex h-full flex-wrap justify-center gap-4">
+    <ul className="flex h-full w-full flex-wrap justify-center gap-4">
       {prompts.map((pro, index) => (
         <li
           key={pro.id}

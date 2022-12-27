@@ -99,18 +99,18 @@ export async function loader({ request }: LoaderArgs) {
   const currentUser = await getUserById(userId);
 
   if (!currentUser)
-    throw json({ completions: null, user: null }, { status: 404 });
+    return json({ completions: null, user: null }, { status: 404 });
   const completions = await getCompletionListItems({ userId });
 
-  if (!completions || completions.length === 0) {
-    throw json(
-      { message: "No has hecho preguntas" },
-      {
-        status: 404,
-        statusText: "No encontrado",
-      }
-    );
-  }
+  // if (!completions || completions.length === 0) {
+  //   throw json(
+  //     { message: "No has hecho preguntas" },
+  //     {
+  //       status: 404,
+  //       statusText: "No encontrado",
+  //     }
+  //   );
+  // }
 
   return json({ completions, user: currentUser }, { status: 200 });
 }
@@ -255,7 +255,7 @@ export default function Index() {
                   width="50"
                   height="50"
                   fill="currentColor"
-                  className="bi bi-arrow-repeat animate-spin"
+                  className="bi bi-arrow-repeat h-full animate-spin"
                   viewBox="0 0 16 16"
                 >
                   <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
@@ -266,12 +266,13 @@ export default function Index() {
                 </svg>
               )
             )}
-
-            {completions && (
-              <div className="py-12">
+            <div className="h-full w-full py-12">
+              {completions && completions.length > 0 ? (
                 <CompletionList prompts={completions} />
-              </div>
-            )}
+              ) : (
+                <div className="text-center">No haz hecho preguntas</div>
+              )}
+            </div>
           </div>
         )}
       </div>
