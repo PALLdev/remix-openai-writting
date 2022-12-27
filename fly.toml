@@ -1,4 +1,4 @@
-app = "-y-c862"
+app = "y-c862"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = [ ]
