@@ -15,6 +15,10 @@ model User {
   updatedAt DateTime @updatedAt
 
   password Password?
+
+  completions Completion[]
+
+  tokens Int @default(10000)
 }
 
 model Password {
@@ -22,4 +26,16 @@ model Password {
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId String @unique
+}
+
+model Completion {
+  id    String @id @default(cuid())
+  prompt String
+  answer String
+  tokens Int
+
+  createdAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId String 
 }

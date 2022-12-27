@@ -60,3 +60,10 @@ export async function verifyLogin(
 
   return userWithoutPassword;
 }
+
+export async function updateUserTokens(
+  id: User["id"],
+  newTokens: User["tokens"]
+) {
+  return prisma.user.update({ where: { id }, data: { tokens: newTokens } });
+}
