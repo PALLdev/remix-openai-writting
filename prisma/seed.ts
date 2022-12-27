@@ -21,7 +21,6 @@ async function seed() {
           hash: hashedPassword,
         },
       },
-      tokens: 10000,
     },
   });
 
